@@ -58,12 +58,12 @@ extension CounterViewController {
     }
     
     private func setLayout() {
-        increaseButton.snp.makeConstraints {
+        decreaseButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
         }
         
-        decreaseButton.snp.makeConstraints {
+        increaseButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-20)
         }
