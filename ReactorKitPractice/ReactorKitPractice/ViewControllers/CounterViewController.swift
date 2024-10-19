@@ -95,10 +95,10 @@ extension CounterViewController: View {
             .disposed(by: disposeBag)
         
         // State (Reactor -> View)
-        reactor.state
-            .map { String($0.value) }
-            .distinctUntilChanged()
-            .bind(to: countLabel.rx.text)
+        reactor.state // Reactor의 상태가 변경될 때마다 해당 스트림 전달
+            .map { String($0.value) } // String으로 변환
+            .distinctUntilChanged() // 다른 요소 오면 반환
+            .bind(to: countLabel.rx.text) // 바인딩
             .disposed(by: disposeBag)
         
         reactor.state
