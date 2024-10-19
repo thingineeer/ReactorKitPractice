@@ -41,29 +41,17 @@
 		71EB55A62CB70555000E172F /* Exceptions for "ReactorKitPractice" folder in "ReactorKitPractice" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				.swift,
 				Info.plist,
 			);
 			target = 71EB557D2CB70554000E172F /* ReactorKitPractice */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		71EB55B42CB70643000E172F /* Exceptions for "ReactorKitPractice" folder in "Compile Sources" phase from "ReactorKitPractice" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 71EB557A2CB70554000E172F /* Sources */;
-			membershipExceptions = (
-				.swift,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		71EB55802CB70554000E172F /* ReactorKitPractice */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				71EB55A62CB70555000E172F /* Exceptions for "ReactorKitPractice" folder in "ReactorKitPractice" target */,
-				71EB55B42CB70643000E172F /* Exceptions for "ReactorKitPractice" folder in "Compile Sources" phase from "ReactorKitPractice" target */,
 			);
 			path = ReactorKitPractice;
 			sourceTree = "<group>";
