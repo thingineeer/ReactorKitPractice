@@ -7,17 +7,14 @@
 
 import UIKit
 
-import RxSwift
-import RxCocoa
 import ReactorKit
+
 import SnapKit
 import Then
 
 final class CounterViewController: UIViewController {
     
     var disposeBag = DisposeBag()
-
-    let reactor = CounterViewReactor()
     
     private let increaseButton = UIButton().then {
         $0.setImage(UIImage(systemName: "plus"), for: .normal)
@@ -39,14 +36,14 @@ final class CounterViewController: UIViewController {
         label.clipsToBounds = true
         return label
     }()
-
+    
+    // MARK: - Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setLayout()
-        setBind(reactor: reactor)
     }
     
     private func setUI() {
@@ -78,12 +75,12 @@ final class CounterViewController: UIViewController {
         }
     }
     
-    private func setBind(reactor: CounterViewReactor) {
-        bindAction(reactor)
-        bindState(reactor)
-    }
-    
-    private func bindAction(_ reactor: CounterViewReactor) {
+}
+
+extension CounterViewController: View {
+    func bind(reactor: CounterViewReactor) {
+        
+        // Action (View -> Reactor)
         increaseButton.rx.tap
             .map { CounterViewReactor.Action.increase }
             .bind(to: reactor.action)
@@ -93,10 +90,8 @@ final class CounterViewController: UIViewController {
             .map { CounterViewReactor.Action.decrease }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-    }
-    
-    private func bindState(_ reactor: CounterViewReactor) {
         
+        // State (Reactor -> View)
         reactor.state
             .map { String($0.value) }
             .distinctUntilChanged()
@@ -109,6 +104,4 @@ final class CounterViewController: UIViewController {
             .bind(to: activityIndicatorView.rx.isAnimating)
             .disposed(by: disposeBag)
     }
-    
-    
 }
