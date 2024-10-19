@@ -5,20 +5,19 @@
 //  Created by 이명진 on 10/11/24.
 //
 
-import UIKit
 import RxSwift
-import RxCocoa
 import ReactorKit
 
 class CounterViewReactor: Reactor {
     let initialState = State()
     
+    // 사용자 인터랙션
     enum Action {
         case increase
         case decrease
     }
     
-    // 처리 단위
+    // 상태를 변경하는 단위
     enum Mutation {
         case increaseValue
         case decreaseValue

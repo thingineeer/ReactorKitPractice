@@ -8,26 +8,22 @@
 import UIKit
 
 import ReactorKit
+import RxCocoa
 
 import SnapKit
 import Then
 
 final class CounterViewController: UIViewController {
     
-    var disposeBag = DisposeBag()
-    
     private let increaseButton = UIButton().then {
         $0.setImage(UIImage(systemName: "plus"), for: .normal)
     }
-    
     private let decreaseButton = UIButton().then {
         $0.setImage(UIImage(systemName: "minus"), for: .normal)
     }
-    
     private var activityIndicatorView = UIActivityIndicatorView().then {
         $0.color = .black
     }
-    
     private let countLabel: UILabel = {
         let label = UILabel()
         label.text = "초기세팅 테스트 입니다."
@@ -37,6 +33,10 @@ final class CounterViewController: UIViewController {
         return label
     }()
     
+    // MARK: - Rx
+    
+    var disposeBag = DisposeBag()
+    
     // MARK: - Init
     
     override func viewDidLoad() {
@@ -45,16 +45,19 @@ final class CounterViewController: UIViewController {
         setUI()
         setLayout()
     }
-    
+}
+
+// MARK: - UI & Layout
+
+extension CounterViewController {
     private func setUI() {
         [increaseButton, countLabel, decreaseButton, activityIndicatorView].forEach {
             view.addSubview($0)
         }
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
     }
     
     private func setLayout() {
-        
         increaseButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
@@ -74,12 +77,12 @@ final class CounterViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
     }
-    
 }
+
+// MARK: - Bind
 
 extension CounterViewController: View {
     func bind(reactor: CounterViewReactor) {
-        
         // Action (View -> Reactor)
         increaseButton.rx.tap
             .map { CounterViewReactor.Action.increase }
